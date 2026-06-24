@@ -2,9 +2,9 @@
 import { useState } from 'react'
 
 const features = [
-  { icon: '📱', title: 'No Hardware Needed', desc: 'Works on any smartphone. Customers scan a QR code at your counter — no terminals, no subscriptions, no fuss.' },
-  { icon: '📊', title: 'Real-Time Analytics', desc: 'See visit frequency, average spend, and retention rates at a glance. Make decisions backed by data, not guesses.' },
-  { icon: '❤️', title: 'Customer Loyalty', desc: 'Replace paper stamp cards with a delightful digital experience. Customers come back more often — and bring friends.' },
+  { icon: '📱', title: 'Keine Hardware nötig', desc: 'Funktioniert auf jedem Smartphone. Ihre Gäste scannen einen QR-Code an der Theke — keine Terminals, keine Abos, kein Aufwand.' },
+  { icon: '📊', title: 'Echtzeitanalysen', desc: 'Besuchshäufigkeit, Stammgäste, Auslastung — auf einen Blick. Entscheidungen auf Basis echter Daten, nicht Bauchgefühl.' },
+  { icon: '☕', title: 'Echte Stammgäste', desc: 'Ersetzen Sie Papierstempelkarten durch ein digitales Erlebnis. Ihre Gäste kommen öfter zurück — und bringen Freunde mit.' },
 ]
 
 export default function HomePage() {
@@ -30,13 +30,13 @@ export default function HomePage() {
             border: '1px solid #dadada', borderRadius: 999, padding: '8px 14px',
             background: 'rgba(255,255,255,0.9)', fontSize: '0.9rem', color: '#5f5f5f', marginBottom: 24,
           }}>
-            ☕ Partner Portal
+            ☕ Partner-Portal
           </span>
           <h1 style={{ fontSize: 'clamp(2.8rem, 7vw, 5.5rem)', lineHeight: 0.95, letterSpacing: '-0.055em', marginBottom: 20, fontWeight: 800 }}>
-            Partner with<br />Strudl
+            Eine Karte.<br />Jedes Kaffeehaus.
           </h1>
-          <p style={{ fontSize: 'clamp(1rem, 1.8vw, 1.25rem)', color: '#5f5f5f', maxWidth: 520, margin: '0 auto 40px' }}>
-            Join hundreds of independent cafés on the Strudl loyalty network. Register below to go live in minutes.
+          <p style={{ fontSize: 'clamp(1rem, 1.8vw, 1.25rem)', color: '#5f5f5f', maxWidth: 560, margin: '0 auto 40px' }}>
+            Unabhängige Kaffeehäuser brauchen keine Kundenkarten. Sie brauchen Stammgäste. Strudl gibt Ihnen die Werkzeuge, die die Ketten schon längst haben.
           </p>
 
           {/* Registration card */}
@@ -48,21 +48,21 @@ export default function HomePage() {
           }}>
             {submitted ? (
               <div style={{ textAlign: 'center', padding: '16px 0' }}>
-                <div style={{ fontSize: '3rem', marginBottom: 12 }}>🎉</div>
-                <h2 style={{ fontWeight: 800, fontSize: '1.4rem', letterSpacing: '-0.03em', marginBottom: 8 }}>Welcome aboard!</h2>
+                <div style={{ fontSize: '3rem', marginBottom: 12 }}>☕</div>
+                <h2 style={{ fontWeight: 800, fontSize: '1.4rem', letterSpacing: '-0.03em', marginBottom: 8 }}>Willkommen bei Strudl.</h2>
                 <p style={{ color: '#5f5f5f', fontSize: '0.97rem' }}>
-                  <strong>{name}</strong> is now live on Strudl. Check your dashboard to get started.
+                  <strong>{name}</strong> ist jetzt dabei. Ihr Dashboard ist bereit.
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit}>
-                <h2 style={{ fontWeight: 800, fontSize: '1.25rem', letterSpacing: '-0.03em', marginBottom: 6 }}>Register your café</h2>
-                <p style={{ color: '#5f5f5f', fontSize: '0.9rem', marginBottom: 24 }}>Takes less than a minute.</p>
+                <h2 style={{ fontWeight: 800, fontSize: '1.25rem', letterSpacing: '-0.03em', marginBottom: 6 }}>Ihr Kaffeehaus anmelden</h2>
+                <p style={{ color: '#5f5f5f', fontSize: '0.9rem', marginBottom: 24 }}>Dauert weniger als eine Minute.</p>
 
-                <label style={{ display: 'block', fontWeight: 600, fontSize: '0.9rem', marginBottom: 6 }}>Business name</label>
+                <label style={{ display: 'block', fontWeight: 600, fontSize: '0.9rem', marginBottom: 6 }}>Name des Kaffeehauses</label>
                 <input
                   value={name} onChange={e => setName(e.target.value)}
-                  placeholder="e.g. The Corner Brew"
+                  placeholder="z.B. Café Central"
                   required
                   style={{
                     width: '100%', padding: '12px 14px', border: '1px solid #dadada',
@@ -73,10 +73,10 @@ export default function HomePage() {
                   onBlur={e => e.target.style.borderColor = '#dadada'}
                 />
 
-                <label style={{ display: 'block', fontWeight: 600, fontSize: '0.9rem', marginBottom: 6 }}>Partner code</label>
+                <label style={{ display: 'block', fontWeight: 600, fontSize: '0.9rem', marginBottom: 6 }}>Partner-Code</label>
                 <input
                   value={code} onChange={e => setCode(e.target.value)}
-                  placeholder="e.g. CAFE-2024"
+                  placeholder="z.B. KAFFEE-2024"
                   required
                   style={{
                     width: '100%', padding: '12px 14px', border: '1px solid #dadada',
@@ -86,7 +86,7 @@ export default function HomePage() {
                   onFocus={e => e.target.style.borderColor = '#0f0f0f'}
                   onBlur={e => e.target.style.borderColor = '#dadada'}
                 />
-                <p style={{ color: '#5f5f5f', fontSize: '0.82rem', marginBottom: 24 }}>You received this in your welcome email.</p>
+                <p style={{ color: '#5f5f5f', fontSize: '0.82rem', marginBottom: 24 }}>Sie haben diesen Code in Ihrer Einladungs-E-Mail erhalten.</p>
 
                 <button
                   type="submit"
@@ -98,7 +98,7 @@ export default function HomePage() {
                     opacity: loading ? 0.7 : 1,
                   }}
                 >
-                  {loading ? 'Registering…' : 'Register café →'}
+                  {loading ? 'Wird angemeldet…' : 'Jetzt anmelden →'}
                 </button>
               </form>
             )}
@@ -110,7 +110,7 @@ export default function HomePage() {
       <section style={{ padding: '72px 16px', background: '#f6f6f6' }}>
         <div style={{ maxWidth: 1180, margin: '0 auto' }}>
           <h2 style={{ textAlign: 'center', fontWeight: 800, fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', letterSpacing: '-0.04em', marginBottom: 48 }}>
-            Everything your café needs
+            Alles, was Ihr Kaffeehaus braucht.
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20 }}>
             {features.map(f => (
