@@ -21,8 +21,8 @@ export default function Navbar() {
         zIndex: 100,
         backdropFilter: 'blur(18px)',
         WebkitBackdropFilter: 'blur(18px)',
-        background: 'rgba(255,255,255,0.78)',
-        borderBottom: '1px solid rgba(0,0,0,0.06)',
+        background: 'rgba(253,250,245,0.82)',
+        borderBottom: '1px solid rgba(26,24,21,0.07)',
       }}
     >
       <div style={{ maxWidth: 1180, margin: '0 auto', padding: '0 16px' }}>
