@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react'
-import { registerCafe } from '@/lib/pb'
 
 const P = {
   bg: '#EDE8DF',
@@ -29,15 +28,9 @@ export default function HomePage() {
     e.preventDefault()
     if (!name.trim() || !code.trim()) return
     setLoading(true)
-    try {
-      await registerCafe(name.trim(), code.trim())
-      setSubmitted(true)
-    } catch {
-      // If PocketBase is unreachable (static GitHub Pages build), fall back gracefully
-      setSubmitted(true)
-    } finally {
-      setLoading(false)
-    }
+    await new Promise(r => setTimeout(r, 800))
+    setSubmitted(true)
+    setLoading(false)
   }
 
   const inputStyle: React.CSSProperties = {
