@@ -5,7 +5,7 @@ import Link from 'next/link'
 const links = [
   { href: '#home', label: 'Home' },
   { href: '#services', label: 'Services' },
-  { href: '#contact', label: 'Kontakt' },
+  { href: '#contact', label: 'Contact' },
 ]
 
 function scrollTo(id: string) {
