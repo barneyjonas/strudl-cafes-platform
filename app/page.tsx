@@ -18,19 +18,58 @@ const features = [
   { icon: '☕', title: 'Echte Stammgäste', desc: 'Ersetzen Sie Papierstempelkarten durch ein digitales Erlebnis. Ihre Gäste kommen öfter zurück — und bringen Freunde mit.' },
 ]
 
+const services = [
+  {
+    icon: '🎫',
+    title: 'Digitale Stempelkarten',
+    desc: 'Ersetzen Sie Papier durch digitale Kundenkarten. Ihre Gäste sammeln Stempel per QR-Code — kein App-Download nötig.',
+  },
+  {
+    icon: '📊',
+    title: 'Analytics-Dashboard',
+    desc: 'Echtzeit-Einblicke in Besuche, Ausgaben und Einlösequoten. Verstehen Sie Ihre Stammgäste und erkennen Sie Wachstumschancen.',
+  },
+  {
+    icon: '📣',
+    title: 'Kampagnen-Manager',
+    desc: 'Gezielte Aktionen für Ihre treusten Gäste. Doppel-Stempel-Dienstag, Geburtstagsangebote, Blitzangebote — in unter 2 Minuten eingerichtet.',
+  },
+]
+
+const contactInfo = [
+  { icon: '✉️', label: 'E-Mail', value: 'partners@strudl.app' },
+  { icon: '📍', label: 'Adresse', value: 'Wien, Österreich' },
+  { icon: '🕐', label: 'Erreichbar', value: 'Mo–Fr, 9–18 Uhr' },
+]
+
 export default function HomePage() {
   const [name, setName] = useState('')
   const [code, setCode] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  async function handleSubmit(e: React.FormEvent) {
+  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+
+  async function handleRegister(e: React.FormEvent) {
     e.preventDefault()
     if (!name.trim() || !code.trim()) return
     setLoading(true)
     await new Promise(r => setTimeout(r, 800))
     setSubmitted(true)
     setLoading(false)
+  }
+
+  function setField(field: string) {
+    return (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      setForm(prev => ({ ...prev, [field]: e.target.value }))
+  }
+
+  function handleContact(e: React.FormEvent) {
+    e.preventDefault()
+    setSending(true)
+    setTimeout(() => { setSending(false); setSent(true) }, 800)
   }
 
   const inputStyle: React.CSSProperties = {
@@ -44,8 +83,9 @@ export default function HomePage() {
 
   return (
     <div style={{ background: P.bg }}>
-      {/* Hero */}
-      <section style={{ padding: '80px 16px 60px', textAlign: 'center' }}>
+
+      {/* ── HOME ─────────────────────────────────────────────────── */}
+      <section id="home" style={{ padding: '80px 16px 60px', textAlign: 'center' }}>
         <div style={{ maxWidth: 1180, margin: '0 auto' }}>
           <span style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -86,7 +126,7 @@ export default function HomePage() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleRegister}>
                 <h2 style={{ fontWeight: 800, fontSize: '1.25rem', letterSpacing: '-0.03em', marginBottom: 6, color: P.text }}>
                   Ihr Kaffeehaus anmelden
                 </h2>
@@ -135,7 +175,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Features */}
+      {/* Features strip */}
       <section style={{ padding: '72px 16px', background: P.surface }}>
         <div style={{ maxWidth: 1180, margin: '0 auto' }}>
           <h2 style={{
@@ -162,13 +202,148 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Bottom CTA strip */}
+      {/* ── SERVICES ─────────────────────────────────────────────── */}
+      <section id="services" style={{ padding: '80px 16px', background: P.bg }}>
+        <div style={{ maxWidth: 1180, margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: 56 }}>
+            <span style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              border: `1px solid ${P.border}`, borderRadius: 999, padding: '8px 14px',
+              background: P.shell, fontSize: '0.9rem', color: P.muted, marginBottom: 20,
+            }}>
+              ✦ Unsere Leistungen
+            </span>
+            <h2 style={{
+              fontWeight: 800, fontSize: 'clamp(2rem, 5vw, 3.6rem)',
+              lineHeight: 0.95, letterSpacing: '-0.05em', color: P.text,
+            }}>
+              Gebaut für<br />unabhängige Kaffeehäuser
+            </h2>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 20 }}>
+            {services.map(s => (
+              <div key={s.title} style={{
+                background: P.shell, border: `1px solid ${P.border}`, borderRadius: 24,
+                padding: 32, boxShadow: '0 20px 60px rgba(26,24,21,0.06)',
+                display: 'flex', flexDirection: 'column', gap: 12,
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <span style={{ fontSize: '2.4rem', lineHeight: 1 }}>{s.icon}</span>
+                  <h3 style={{ fontWeight: 800, fontSize: '1.2rem', letterSpacing: '-0.02em', margin: 0, color: P.text }}>{s.title}</h3>
+                </div>
+                <p style={{ color: P.muted, fontSize: '0.95rem', lineHeight: 1.65, flex: 1 }}>{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CONTACT ──────────────────────────────────────────────── */}
+      <section id="contact" style={{ padding: '80px 16px', background: P.surface }}>
+        <div style={{ maxWidth: 1180, margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: 56 }}>
+            <span style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              border: `1px solid ${P.border}`, borderRadius: 999, padding: '8px 14px',
+              background: P.shell, fontSize: '0.9rem', color: P.muted, marginBottom: 20,
+            }}>
+              ✦ Kontakt
+            </span>
+            <h2 style={{
+              fontWeight: 800, fontSize: 'clamp(2rem, 5vw, 3.6rem)',
+              lineHeight: 0.95, letterSpacing: '-0.05em', color: P.text,
+            }}>
+              Wir freuen uns<br />von Ihnen zu hören
+            </h2>
+          </div>
+
+          <div style={{
+            maxWidth: 900, margin: '0 auto',
+            display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 32,
+          }}>
+            {/* Info */}
+            <div>
+              <h3 style={{ fontWeight: 800, fontSize: '1.15rem', letterSpacing: '-0.02em', marginBottom: 24, color: P.text }}>
+                Kontaktdaten
+              </h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                {contactInfo.map(c => (
+                  <div key={c.label} style={{ display: 'flex', alignItems: 'flex-start', gap: 14 }}>
+                    <span style={{
+                      width: 40, height: 40, borderRadius: 12, background: P.shell,
+                      border: `1px solid ${P.border}`,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      fontSize: '1.1rem', flexShrink: 0,
+                    }}>{c.icon}</span>
+                    <div>
+                      <div style={{ fontWeight: 600, fontSize: '0.85rem', color: P.muted, marginBottom: 2 }}>{c.label}</div>
+                      <div style={{ fontWeight: 500, fontSize: '0.97rem', color: P.text }}>{c.value}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Form */}
+            <div style={{
+              background: P.shell, border: `1px solid ${P.border}`, borderRadius: 24,
+              padding: 32, boxShadow: '0 20px 60px rgba(26,24,21,0.07)',
+            }}>
+              {sent ? (
+                <div style={{ textAlign: 'center', padding: '24px 0' }}>
+                  <div style={{ fontSize: '2.8rem', marginBottom: 12 }}>✅</div>
+                  <h3 style={{ fontWeight: 800, fontSize: '1.3rem', letterSpacing: '-0.02em', marginBottom: 8, color: P.text }}>
+                    Nachricht gesendet!
+                  </h3>
+                  <p style={{ color: P.muted, fontSize: '0.95rem' }}>Wir melden uns innerhalb eines Werktages.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleContact} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                  <h3 style={{ fontWeight: 800, fontSize: '1.15rem', letterSpacing: '-0.02em', marginBottom: 4, color: P.text }}>
+                    Nachricht senden
+                  </h3>
+                  <div>
+                    <label style={{ display: 'block', fontWeight: 600, fontSize: '0.88rem', marginBottom: 6, color: P.text }}>Name</label>
+                    <input value={form.name} onChange={setField('name')} placeholder="Ihr Name" required style={inputStyle}
+                      onFocus={e => e.target.style.borderColor = P.text}
+                      onBlur={e => e.target.style.borderColor = P.border} />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontWeight: 600, fontSize: '0.88rem', marginBottom: 6, color: P.text }}>E-Mail</label>
+                    <input value={form.email} onChange={setField('email')} type="email" placeholder="ihre@email.at" required style={inputStyle}
+                      onFocus={e => e.target.style.borderColor = P.text}
+                      onBlur={e => e.target.style.borderColor = P.border} />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontWeight: 600, fontSize: '0.88rem', marginBottom: 6, color: P.text }}>Nachricht</label>
+                    <textarea value={form.message} onChange={setField('message')} placeholder="Wie können wir helfen?" required rows={5}
+                      style={{ ...inputStyle, resize: 'vertical' }}
+                      onFocus={e => e.target.style.borderColor = P.text}
+                      onBlur={e => e.target.style.borderColor = P.border} />
+                  </div>
+                  <button type="submit" disabled={sending} style={{
+                    padding: '14px', background: P.cta, color: P.shell,
+                    border: `1px solid ${P.cta}`, borderRadius: 999,
+                    fontWeight: 700, fontSize: '0.97rem',
+                    opacity: sending ? 0.7 : 1,
+                  }}>
+                    {sending ? 'Wird gesendet…' : 'Nachricht senden →'}
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── BOTTOM CTA ───────────────────────────────────────────── */}
       <section style={{ padding: '56px 16px', textAlign: 'center', background: P.bg }}>
         <div style={{ maxWidth: 600, margin: '0 auto' }}>
           <p style={{ fontSize: 'clamp(1.2rem, 3vw, 1.8rem)', fontWeight: 700, letterSpacing: '-0.03em', color: P.text, marginBottom: 24 }}>
             Wien trinkt Kaffee. Machen Sie daraus Stammgäste.
           </p>
-          <a href="#top" onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+          <a href="#home" onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
               background: P.cta, color: P.shell,
