@@ -53,7 +53,7 @@ export default function DashboardLoginPage() {
       }}>
         <div style={{ textAlign: 'center', marginBottom: 28 }}>
           <img
-            src="/Logo_Strudl_no_Background.svg" alt="Strudl"
+            src="/strudl-cafes-platform/Logo_Strudl_no_Background.svg" alt="Strudl"
             style={{ width: 52, height: 52, borderRadius: 14, objectFit: 'cover', margin: '0 auto 10px' }}
           />
           <h1 style={{ fontWeight: 800, fontSize: '1.5rem', letterSpacing: '-0.03em', marginBottom: 6, color: P.text }}>

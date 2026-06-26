@@ -32,7 +32,7 @@ export default function Navbar() {
             <span style={{ width: 48, height: 48, borderRadius: 14, overflow: 'hidden', flexShrink: 0, transition: 'transform 240ms ease' }}
               onMouseEnter={e => (e.currentTarget.style.transform = 'rotate(-6deg) scale(1.04)')}
               onMouseLeave={e => (e.currentTarget.style.transform = '')}>
-              <img src="/Logo_Strudl_no_Background.svg" alt="Strudl logo" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              <img src="/strudl-cafes-platform/Logo_Strudl_no_Background.svg" alt="Strudl logo" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             </span>
             Strudl
           </Link>

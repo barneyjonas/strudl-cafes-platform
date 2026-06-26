@@ -7,7 +7,7 @@ import CookieBanner from '@/components/CookieBanner'
 export const metadata: Metadata = {
   title: 'Strudl',
   description: 'Eine Karte. Jedes Kaffeehaus. Digitale Kundenbindung für unabhängige Kaffeehäuser in Wien.',
-  icons: { icon: '/Logo_Strudl_no_Background.svg' },
+  icons: { icon: '/strudl-cafes-platform/Logo_Strudl_no_Background.svg' },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
