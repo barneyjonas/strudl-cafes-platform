@@ -185,7 +185,7 @@ export default function HomePage() {
           }}>
             Everything your café needs.
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 20 }}>
             {features.map(f => (
               <div key={f.title} style={{
                 background: P.shell, border: `1px solid ${P.border}`, borderRadius: 24,
@@ -221,7 +221,7 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 20 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 20 }}>
             {services.map(s => (
               <div key={s.title} style={{
                 background: P.shell, border: `1px solid ${P.border}`, borderRadius: 24,
@@ -260,7 +260,7 @@ export default function HomePage() {
 
           <div style={{
             maxWidth: 900, margin: '0 auto',
-            display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 32,
+            display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 32,
           }}>
             {/* Info */}
             <div>
