@@ -3,9 +3,9 @@ import Link from 'next/link'
 export default function Footer() {
   return (
     <footer style={{
-      borderTop: '1px solid rgba(0,0,0,0.06)',
+      borderTop: '1px solid #E8E2D8',
       padding: '32px 16px',
-      background: '#fafafa',
+      background: '#EDE8DF',
     }}>
       <div style={{
         maxWidth: 1180, margin: '0 auto',
@@ -13,7 +13,7 @@ export default function Footer() {
         alignItems: 'center', justifyContent: 'space-between',
         gap: 12,
       }}>
-        <span style={{ fontSize: '0.85rem', color: '#9f9f9f' }}>
+        <span style={{ fontSize: '0.85rem', color: '#7A7060' }}>
           © {new Date().getFullYear()} Strudl. Wien, Österreich.
         </span>
         <nav style={{ display: 'flex', flexWrap: 'wrap', gap: '6px 20px' }}>
@@ -24,7 +24,7 @@ export default function Footer() {
             { href: '/dpa', label: 'Auftragsverarbeitung' },
           ].map(l => (
             <Link key={l.href} href={l.href}
-              style={{ fontSize: '0.85rem', color: '#9f9f9f', textDecoration: 'none' }}
+              style={{ fontSize: '0.85rem', color: '#7A7060', textDecoration: 'none' }}
               className="hover:text-black transition-colors"
             >
               {l.label}
